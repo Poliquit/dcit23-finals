@@ -195,7 +195,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 190, 260));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
         jLabel14.setText("Student Info");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
         jLabel14.getAccessibleContext().setAccessibleName("Student Info");
