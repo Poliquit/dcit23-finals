@@ -8,12 +8,12 @@ package com.systemfinals;
  *
  * @author Lj
  */
-public class mainFrame extends javax.swing.JFrame {
+public class first_sem extends javax.swing.JFrame {
 
     /**
      * Creates new form mainFrame
      */
-    public mainFrame() {
+    public first_sem() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -65,7 +65,7 @@ public class mainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(76, 205, 153));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
@@ -155,6 +155,7 @@ public class mainFrame extends javax.swing.JFrame {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 190, 260));
 
         jPanel4.setBackground(new java.awt.Color(255, 243, 35));
+        jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -198,12 +199,10 @@ public class mainFrame extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
         jLabel14.setText("Student Info");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
-        jLabel14.getAccessibleContext().setAccessibleName("Student Info");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         jLabel15.setText("Subjects");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
-        jLabel15.getAccessibleContext().setAccessibleName("Subjects");
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel16.setText("Grades");
@@ -239,20 +238,21 @@ public class mainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(first_sem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(first_sem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(first_sem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(first_sem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainFrame().setVisible(true);
+                new first_sem().setVisible(true);
             }
         });
     }
