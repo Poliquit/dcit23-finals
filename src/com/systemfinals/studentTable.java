@@ -4,33 +4,22 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 public class studentTable extends javax.swing.JFrame {
-
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    
     public studentTable() {
         initComponents();
         setLocationRelativeTo(null);
-    }
-
-    public static List<Object[]> getDataFromDatabase() {
-        List<Object[]> data = new ArrayList<>();
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM doña-josefa")) {
-            
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                data.add(new Object[]{id, name});
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return data;
+        conn = ConDB.getConnection();
+        Student_Table();
     }
     
     @SuppressWarnings("unchecked")
@@ -40,7 +29,7 @@ public class studentTable extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_data = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,7 +41,7 @@ public class studentTable extends javax.swing.JFrame {
         jLabel1.setText("Table Data");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_data.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -68,7 +57,7 @@ public class studentTable extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_data);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 600, 80));
 
@@ -77,9 +66,16 @@ public class studentTable extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    public void Student_Table() {
+        try {
+            String sql = "SELECT * FROM student-info";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            tbl_data.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }         
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -116,6 +112,6 @@ public class studentTable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_data;
     // End of variables declaration//GEN-END:variables
 }
