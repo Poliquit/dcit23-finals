@@ -7,19 +7,21 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
 public class studentTable extends javax.swing.JFrame {
     Connection conn = null;
-    PreparedStatement ps = null;
+    PreparedStatement pst = null;
     ResultSet rs = null;
     
     public studentTable() {
         initComponents();
         setLocationRelativeTo(null);
         conn = ConDB.getConnection();
-        Student_Table();
+        fetch1();
     }
     
     @SuppressWarnings("unchecked")
@@ -29,6 +31,10 @@ public class studentTable extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_data2 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tbl_data = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,8 +44,36 @@ public class studentTable extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Table Data");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, -1));
+        jLabel1.setText("Second Sem");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+
+        tbl_data2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "STUDENT NAME", "STRAND", "GRADE LEVEL", "SECTION"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbl_data2);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 560, 80));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setText("Table Data");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("First Sem");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         tbl_data.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -57,23 +91,23 @@ public class studentTable extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbl_data);
+        jScrollPane2.setViewportView(tbl_data);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 600, 80));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 560, 90));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void Student_Table() {
+    public void fetch1() {
         try {
-            String sql = "SELECT * FROM student-info";
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            tbl_data.setModel(DbUtils.resultSetToTableModel(rs));
+          String sql = "SELECT * FROM `studentinfo`";
+          pst = conn.prepareStatement(sql);
+          rs = pst.executeQuery();
+          tbl_data.setModel(DbUtils.resultSetToTableModel(rs));
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }         
     }
     public static void main(String args[]) {
@@ -110,8 +144,12 @@ public class studentTable extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbl_data;
+    private javax.swing.JTable tbl_data2;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,7 +14,7 @@ public class ConDB {
         try{
             dbRoot = "jdbc:mysql://";
             dbHost = "localhost:3306/";
-            dbName = "dona-josefa";
+            dbName = "shs_grading_system";
             dbURL = dbRoot + dbHost + dbName;
             
             hostUser = "root";
